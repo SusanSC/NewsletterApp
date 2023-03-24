@@ -2,6 +2,11 @@ const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
 
+require ('dotenv').config({path: 'vars/.env'});
+const MAPI_KEY = process.env.API_KEY;
+const MLIST_ID = process.env.LIST_ID;
+const MAPI_SERVER = process.env.API_SERVER;
+
 const app = express();
 
 app.use(bodyParser.urlencoded({
@@ -40,14 +45,14 @@ const data = {
 //converts the data (object inside the variable 'data') which is in a javascript format, to a JSON format.
 const jsonData = JSON.stringify(data);
 
-const url = "https://us21.api.mailchimp.com/3.0/lists/001a3c2abe"
+const url = "https://" + MAPI_SERVER +".api.mailchimp.com/3.0/lists/" + MLIST_ID;
 
 const options = {
   //specifies the type of request, GET or POST
   method: "POST",
   //this is for authentication and its required for the POST request to be succesful, here I used HTTP Basic Authentication, as it says at mailchimp documentation (anystring:TOKEN)
-  auth: "susan:aaeaba517cb040a25a013202d6af4d49-us21"
-}
+  auth: "susan:" + MAPI_KEY
+};
 
 //in order to send the data to the mailchimp server we need to save it in a variable
 const request = https.request(url, options, function(response){
@@ -84,10 +89,3 @@ res.redirect("/");
 app.listen(process.env.PORT || 3000, function() {
   console.log("Server is running on port 3000");
 });
-
-
-//API key
-//aaeaba517cb040a25a013202d6af4d49-us21
-
-//List id
-//001a3c2abe
