@@ -46,7 +46,7 @@ const options = {
   //specifies the type of request, GET or POST
   method: "POST",
   //this is for authentication and its required for the POST request to be succesful, here I used HTTP Basic Authentication, as it says at mailchimp documentation (anystring:TOKEN)
-  auth: "susan:9dfb6f0f38f8c8cb2cca5ec73891c2d2-us21"
+  auth: "susan:aaeaba517cb040a25a013202d6af4d49-us21"
 }
 
 //in order to send the data to the mailchimp server we need to save it in a variable
@@ -87,7 +87,7 @@ app.listen(process.env.PORT || 3000, function() {
 
 
 //API key
-//9dfb6f0f38f8c8cb2cca5ec73891c2d2-us21
+//aaeaba517cb040a25a013202d6af4d49-us21
 
 //List id
 //001a3c2abe
